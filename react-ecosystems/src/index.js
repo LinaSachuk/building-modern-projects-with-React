@@ -7,12 +7,17 @@ import { configureStore } from './store';
 import App from './App.js';
 
 const store = configureStore();
+const persistor = persistStore(store);
 
 
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <PersistGate
+            loading={<div>Loading...</div>}
+            persistor={persistor}>
+            <App />
+        </PersistGate>
     </Provider>,
     document.getElementById('root'),
 
